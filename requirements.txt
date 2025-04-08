@@ -1,2 +1,5 @@
+autogen-agentchat==0.5.1
 autogen-core==0.5.1
+autogen-ext==0.5.1
 google-genai==1.9.0
+plotly==6.0.1
