@@ -1,27 +1,59 @@
-## Implementing Modular Agents
-We have used Autogen to create the Monolith Agent, but there are many other frameworks that you can use.
+# SQL Agent System
 
-### Autogen
-- https://microsoft.github.io/autogen/stable//user-guide/agentchat-user-guide/installation.html
-- https://microsoft.github.io/autogen/stable//user-guide/core-user-guide/installation.html
+A modular agent-based system for processing SQL queries and generating natural language reports using LangGraph.
 
-### AWS Multi Agent Orchestrator
-- https://awslabs.github.io/multi-agent-orchestrator/general/introduction/
+## Architecture
 
-### LangGraph
-- https://langchain-ai.github.io/langgraph/tutorials/introduction/
+The system consists of four main agents:
 
-### Open AI Agents SDK
-- https://platform.openai.com/docs/guides/agents
+1. **Orchestrator Agent**: Central control hub that manages the workflow
+2. **Query Parser Agent**: Analyzes user queries and generates SQL
+3. **Executor Agent**: Executes SQL queries against the database
+4. **Report Generator Agent**: Creates natural language reports from query results
 
-### Crew AI
-- https://docs.crewai.com/introduction
+## Setup
 
-### ChatDev
-- https://github.com/OpenBMB/ChatDev
+1. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
+2. Set up environment variables:
+```bash
+# Create a .env file with:
+OPENAI_API_KEY=your_api_key
+DB_PATH=path_to_your_database
+```
 
-## Simple Micro Agent Architecture
-- One Agent per Tool
-- One Agent Orchestrator
-- (Optionally) separate Planner Agent
+## Usage
+
+```python
+from lang_graph_agent.main import main
+
+# Initialize the system
+process_query = main()
+
+# Process a query
+result = process_query("What were the sales trends last month?")
+print(result)
+```
+
+## How it Works
+
+1. The Orchestrator receives the user query and coordinates the workflow
+2. The Query Parser analyzes the query and generates appropriate SQL
+3. The Executor runs the SQL queries against the database
+4. The Report Generator creates a natural language report from the results
+5. The final report is returned to the user
+
+## Error Handling
+
+The system includes comprehensive error handling:
+- SQL syntax errors are caught and reported
+- Database connection issues are handled gracefully
+- Query execution errors are logged and reported
+- The system can retry failed operations when appropriate
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!
